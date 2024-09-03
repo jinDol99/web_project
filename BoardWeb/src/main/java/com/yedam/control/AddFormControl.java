@@ -1,25 +1,23 @@
 package com.yedam.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.yedam.common.Control;
-import com.yedam.common.DataSource;
-import com.yedam.mapper.MemberMapper;
-import com.yedam.vo.MemberVO;
 
 public class AddFormControl implements Control {
 	@Override
-	public void exec(HttpServletRequest request, HttpServletResponse response) {
-		/* 이게 맞나? 일단 addMemberServlet.java에서 그대로 긁어 옴 */
+	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8"); // 브라우저에서 한글을 사용할 수 있게끔 처리
-
+		// addForm.do 요청 -> 요청재지정(WEB-INF/html/addForm.jsp)
+		
+		request.setAttribute("msg", "Hello, World!");	// request 객체에 msg 전달
+		request.getRequestDispatcher("WEB-INF/html/addForm.jsp").forward(request, response);
+		
+		/* 이게 맞나? 일단 addMemberServlet.java에서 그대로 긁어 옴
 		String id = request.getParameter("id"); // 웹 브라우저(사용자)의 요청정보 중 id 값을 읽어들임
 		String name = request.getParameter("name"); // 요청정보 중 name 값을 읽어들임
 		String pw = request.getParameter("pass"); // 이하 동일
@@ -43,6 +41,7 @@ public class AddFormControl implements Control {
 			e.printStackTrace();
 		}
 		
+		*/
 		// 커밋 테스트용 수정 : 24.09.03 04:52
 
 	}

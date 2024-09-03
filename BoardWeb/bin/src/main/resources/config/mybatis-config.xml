@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />	<!-- DAO의 Connection 연결하는 부분의 -->
+				<property name="url"
+					value="jdbc:oracle:thin:@localhost:1521/xe" />	<!-- 4개의 값을 value로 복붙하자! -->
+				<property name="username" value="javadb" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/yedam/mapper/MemberMapper.xml" />		<!-- MemberMapper.xml이 있는 경로 수정! -->
+	</mappers>
+</configuration>
+
+
+<!-- co.yedam.mybatis.config 패키지 안에 mybatis-config.xml 파일을 새로 만든 뒤 아래 웹페이지에 
+	있는 코드를 복붙하자. https://mybatis.org/mybatis-3/ko/getting-started.html#xml%EC%97%90%EC%84%9C-sqlsessionfactory-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B8%B0 
+	복붙한 뒤 빨간 줄이 많이 뜨는것은 에러가 아니지만 보기 거슬린다면 [Window] - [Preferences] - [Maven] 
+	- [Download Artifect Sources]를 선택 해제하자. xml파일을 정상적으로 추가한 뒤, DataSource 클래스의 
+	resource 부분의 경로를 이 경로로 반드시 변경할것! -->

@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td><button class="btn btn-info" onclick="location.href='modifyForm.do?id=<%=member.getMemberId() %>'">수정</button>
-			<td><button class="btn brn-danger" onclick="locaction.href='removeMember.do?id=<%=member.getMemberId() %>'">삭제</button>
+			<td><button class="btn brn-danger">삭제</button>
 		</tr>
 	</table>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

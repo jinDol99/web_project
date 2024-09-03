@@ -12,14 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.control.AddFormControl;
-import com.yedam.control.AddMemberControl;
-import com.yedam.control.GetMemberControl;
 import com.yedam.control.IntroControl;
 import com.yedam.control.MainControl;
-import com.yedam.control.MemberListControl;
-import com.yedam.control.ModFormControl;
-import com.yedam.control.ModifyMemberControl;
 import com.yedam.control.SubControl;
 
 // url에서 맨 마지막이 ".do"로 끝나는 모든 url은 모두 아래 코드를 실행
@@ -43,13 +37,22 @@ public class FrontController extends HttpServlet {
 		map.put("/sub.do", new SubControl());
 		map.put("/intro.do", new IntroControl());
 		
-		// 기능 등록.
-		map.put("/addForm.do", new AddFormControl());			// 회원 등록 페이지
-		map.put("/addMember.do", new AddMemberControl());		// 회원 조회 페이지
-		map.put("/memberList.do", new MemberListControl());
-		map.put("/getMember.do", new GetMemberControl());		// 회원 아이디로 상세조회	
-		map.put("/modifyForm.do", new ModFormControl());		// 수정화면 호출
-		map.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
+		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
+		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
+//		
+		map.putAll(memberMenu);		// 멤버 관련 메뉴 추가
+		map.putAll(boardMenu);		// 게시글 관련 메뉴 추가		
+		
+		
+		
+//		// 기능 등록.
+//		map.put("/addForm.do", new AddFormControl());			// 회원 등록 페이지
+//		map.put("/addMember.do", new AddMemberControl());		// 회원 조회 페이지
+//		map.put("/memberList.do", new MemberListControl());
+//		map.put("/getMember.do", new GetMemberControl());		// 회원 아이디로 상세조회	
+//		map.put("/modifyForm.do", new ModFormControl());		// 수정화면 호출
+//		map.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
+//		map.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
 	}
 	
 	@Override
