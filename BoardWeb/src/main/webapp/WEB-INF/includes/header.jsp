@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +23,14 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">회원등록</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원목록</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
+                    <c:choose>
+                    	<c:when test="${empty logid}">	<!-- 로그아웃상태: logid 값이 공백이거나 비엇거나 null값임 -->
+	                    	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인화면</a>                                        	
+                    	</c:when>
+                    	<c:otherwise>	<!-- 로그인 상태 -->
+		                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그아웃</a>            	
+                    	</c:otherwise>
+                    </c:choose>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
                 </div>

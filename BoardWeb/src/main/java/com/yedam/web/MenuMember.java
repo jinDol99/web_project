@@ -6,6 +6,7 @@ import java.util.Map;
 import com.yedam.common.Control;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.LoginFormControl;
 
 public class MenuMember {
 	private static MenuMember instance = new MenuMember();
@@ -30,6 +31,9 @@ public class MenuMember {
 //		map.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
 		menu.put("/boardList.do", new BoardListControl());
 		menu.put("/board.do", new BoardControl());	// 임시로 내가 만들어봄: 회원 상세로 가는 페이지 처리
+		
+		// 로그인 관련
+		menu.put("loginForm.do", new LoginFormControl());
 		
 		return menu;
 	}
