@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.BoardMapper">	<!-- 인터페이스가 있는 경로 설정하기! -->
+
+	<select id="selectList" resultType="board">		<!-- [박진석 | boardSetting] 2-1. -->
+		SELECT	board_no
+			  , title
+		      , content
+		      , writer
+		      , view_cnt
+		      , creation_date
+		FROM 	tbl_board
+		ORDER BY board_no DESC
+	</select> 
+	
+	
+	<insert id="insertBoard" parameterType="board">		<!-- SQL에 `#{}`이 있다면 parameterType 속성! -->
+		INSERT INTO tbl_board (board_no, title, content, writer)
+		VALUES (board_seq.nextval, #{title}, #{content}, #{writer});
+	</insert>
+	
+	
+	<update id="updateBoard" parameterType="board">
+		UPDATE tbl_board
+		<set>							<!-- set이 여러개 있고, if로 특정 조건에 따라 update 해야하는게 바뀌는 경우 -->
+			<if test="title != null">	<!-- 콤마로 인해 SQL 구문 오류가 발생할 수 있음. -->
+					title = #{title}	<!-- 이를 해결해 주는게 <set> 태그로, SET 구문 속 <if> , ... </if> 처럼 콤마가 있어도 -->
+										<!-- 알아서 오류가 안 뜨도록 처리해줌 -->
+			</if>
+			<if test="content != null">
+					,content = #{content}		
+			</if>
+		
+		</set>		
+		WHERE	board_no = #{boardNo}
+	</update>
+	
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM tbl_board
+		WHERE board_no = #{boardNo}
+	</delete>
+	
+	
+	<!-- id, parameterType, resultType가 햇갈릴 땐 -->
+	<!-- Mapper 추상메소드 `BoardVO selectBoard(int boardNo); 를 참고하자. -->
+	<select id="selectBoard" parameterType="int" resultType="board">	
+		SELECT	board_no
+			  , title
+		      , content
+		      , writer
+		      , view_cnt
+		      , creation_date
+		FROM 	tbl_board
+		WHERE	board_no = #{boardNo}
+	</select>
+	
+	
+	<select id="selectCount" resultType="int">
+		SELECT count(1)
+		from tbl_board
+	</select>
+	
+
+	<!--  SQL 쿼리 속 `<`같은 꺾쇠는 태그로 인식할 수 있음 해당 부분을 <![CDATA[ .. ]]> 로 감싸주면 해결됨.-->
+	<select id="selectListPaging" parameterType="int" resultType="board">
+		SELECT C.*
+		FROM (  SELECT rownum rn, b.*
+        		FROM (	SELECT *					
+                		FROM tbl_board				
+                 		ORDER BY board_no desc) b
+<![CDATA[													
+       		 	WHERE rownum <= #{page} * 5 ) c
+]]>
+		WHERE c.rn > (#{page} - 1) * 5
+	</select>
+
+</mapper>

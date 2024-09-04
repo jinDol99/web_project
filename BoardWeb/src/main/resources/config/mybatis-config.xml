@@ -8,6 +8,7 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.yedam.vo.BoardVO" alias="board"/>	<!-- [박진석 | boardSetting] 1-4. -->
 	</typeAliases>
 	
 	<environments default="development">
@@ -26,6 +27,7 @@
 	
 	<mappers>
 		<mapper resource="com/yedam/mapper/MemberMapper.xml" />		<!-- MemberMapper.xml이 있는 경로 수정! -->
+		<mapper resource="com/yedam/mapper/BoardMapper.xml" />		<!-- [박진석 | boardSetting] 1-2. -->
 	</mappers>
 </configuration>
 
