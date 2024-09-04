@@ -6,6 +6,7 @@ import java.util.Map;
 import com.yedam.common.Control;
 import com.yedam.control.AddFormControl;
 import com.yedam.control.AddMemberControl;
+import com.yedam.control.BoardControl;
 import com.yedam.control.GetMemberControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModFormControl;
@@ -33,6 +34,7 @@ public class MenuBoard {
 		map.put("/modifyForm.do", new ModFormControl());		// 수정화면 호출
 		map.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
 		map.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
+		
 		
 		return map;
 	}

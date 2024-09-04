@@ -58,6 +58,7 @@
 	</select>
 	
 	
+	<!-- 페이징을 위해 현재 board의 모든 행 값을 가져옴 -->
 	<select id="selectCount" resultType="int">
 		SELECT count(1)
 		from tbl_board

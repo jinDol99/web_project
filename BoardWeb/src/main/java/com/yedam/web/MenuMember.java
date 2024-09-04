@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.yedam.common.Control;
+import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 
 public class MenuMember {
@@ -28,6 +29,7 @@ public class MenuMember {
 //		map.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
 //		map.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
 		menu.put("/boardList.do", new BoardListControl());
+		menu.put("/board.do", new BoardControl());	// 임시로 내가 만들어봄: 회원 상세로 가는 페이지 처리
 		
 		return menu;
 	}

@@ -16,7 +16,7 @@
 		<c:forEach var="board" items="${list}">
 			<tr>
 				<td><c:out value=" ${board.boardNo }" /></td>
-				<td>${board.title }</td>
+				<td><a href="board.do?page=${paging.page}&bno=${board.boardNo }">${board.title }</a></td>
 				<td>${board.writer }</td>
 				<td><fmt:formatDate value="${board.creationDate }" pattern="yyyy.MM.dd HH:mm:ss"/>  </td>
 			</tr>	
@@ -27,16 +27,25 @@
 <!-- 페이징 -->
 <nav aria-label="...">
   <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
+    <li class="page-item ${paging.prev ? '' : 'disabled' }">
+      <a class="page-link" href="boardList.do?page=${paging.startPage-1}">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="boardList.do?page=1">1</a></li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="boardList.do?page=2">2</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="boardList.do?page=3">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+	    <c:forEach var="pg" begin="${paging.startPage }" end="${paging.endPage }">
+	    <c:choose>
+	    	<c:when test="${paging.page == pg }">	<!--  현재 페이징일 경우:  -->
+	    		<li class="page-item active" aria-current="page">
+			    	<a class="page-link" href="boardList.do?page=${pg}">${pg}</a>
+			    </li>
+	    	</c:when>
+	    	<c:otherwise>							<!-- 현재 페이징 아닐 경우 -->
+	    		<li class="page-item">
+	    			<a class="page-link" href="boardList.do?page=${pg}">${pg}</a>
+	   			</li>
+	    	</c:otherwise>
+	    </c:choose>
+	    </c:forEach>
+    <li class="page-item ${paging.next ? '' : 'disabled' }">
+      <a class="page-link" href="boardList.do?page=${paging.endPage+1}">Next</a>
     </li>
   </ul>
 </nav>
