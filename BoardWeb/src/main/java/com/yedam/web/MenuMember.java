@@ -39,7 +39,7 @@ public class MenuMember {
 //		menu.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
 //		menu.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
 		menu.put("/boardList.do", new BoardListControl());
-		menu.put("/board.do", new BoardControl());	// 임시로 내가 만들어봄: 회원 상세로 가는 페이지 처리
+		menu.put("/board.do", new BoardControl());	// 회원 상세로 가는 페이지 처리
 		
 		// 로그인 관련
 		menu.put("/loginForm.do", new LoginFormControl());

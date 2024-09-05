@@ -9,9 +9,11 @@ import com.yedam.control.AddFormControl;
 import com.yedam.control.AddMemberControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardFormControl;
+import com.yedam.control.BoardUpdateControl;
 import com.yedam.control.GetMemberControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModFormControl;
+import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyMemberControl;
 import com.yedam.control.RemoveBoardControl;
 import com.yedam.control.RemoveMemberControl;
@@ -41,7 +43,8 @@ public class MenuBoard {
 		menu.put("/removeBoard.do", new RemoveBoardControl());	// 게시글 삭제 처리
 		menu.put("/addBoard.do", new AddBoardControl());	// 게시글 신규 작성 처리
 		menu.put("/addboardForm.do", new BoardFormControl());	// 게시글 신규 작성 호출
-		
+		menu.put("/boardUpdate.do", new BoardUpdateControl());	// 게시글 수정 호출	
+		menu.put("/modifyBoard.do", new ModifyBoardControl());	// 게시글 수정 처리
 		
 		return menu;
 	}

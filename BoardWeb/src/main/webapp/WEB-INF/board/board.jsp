@@ -9,7 +9,7 @@
 <p>searchCondition: ${sc }, keyword: ${kw }</p>
 <table class="table">
 	<tr><td>제목</td><td colspan="3">${board.title }</td></tr>
-	<tr><td>글쓴이</td><td colspan="3">${board.writer }</td></tr>
+	<tr><td>글쓴이</td><td colspan="3">${board.writer } ${board.boardNo }</td></tr>
 	<tr><td>조회수</td><td>123</td><td> 작성시간</td><td>${board.creationDate }</td></tr>
 	<tr><td>내용</td><td colspan="3">${board.content }</td></tr>
 	<tr>
@@ -17,7 +17,8 @@
 			<%-- <button class="btn btn-secondary" onclick="location.href='boardList.do?keyword=${kw}&searchCondition=${sc}&page=${paging}'">목록으로</button> --%>
 			<button class="btn btn-secondary" onclick="form_submit('boardList.do')">목록으로</button>
 			<!-- 게시글의 작성자(board.writer)와 로그인된 사람(logid)와 일치하지 않으면(ne) 클래스에 "disabled" (비활성화) 속성값을 삽입-->
-			<button class="btn btn-info ${board.writer ne logid ? 'disabled' : ''}" onclick="location.href='boardUpdate.do?page=${paging}&bno=${board.boardNo }'">수정은 숙제</button>
+			<%-- <button class="btn btn-info ${board.writer ne logid ? 'disabled' : ''}" onclick="location.href='boardUpdate.do?page=${paging}&bno=${board.boardNo }'">수정은 숙제</button> --%>
+			<button class="btn btn-secondary" onclick="form_submit('boardUpdate.do')">수정은 숙제</button>
 			<!-- 삭제 페이지에도 2개의 파라미터를 추가로 넘김 [4-1] -->
 			<%-- <button class="btn btn-danger" onclick="location.href='removeBoard.do?keyword=${kw}&searchCondition=${sc}&page=${paging}&bno=${board.boardNo }'">삭제</button> --%>
 			<!-- [5-2] -->

@@ -10,7 +10,7 @@ import com.yedam.vo.MemberVO;
 
 public class MemberServiceImpl implements MemberService{
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
-	MemberMapper mapper = new selectMember();
+	MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 	
 	@Override
 	public List<MemberVO> getMembers() {
@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public boolean addMemeber(MemberVO member) {
+	public boolean addMember(MemberVO member) {
 		if(mapper.selectMember(member.getMemberId()) != null) {
 			return false;		// 이미 존재하는 아이디
 		}
@@ -26,18 +26,19 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	private boolean removeMember(String memberId) {
+	public boolean removeMember(String memberId) {
 		return mapper.deleteMember(memberId) == 1;
 	}
 	
 	@Override
-	private boolean modifyMember(MemberVO member) {
-		return mapper.modifyMember(memberId) == 1;
+	public boolean modifyMember(MemberVO member) {
+		return mapper.updateMember(member) == 1;
+//		return mapper.modifyMember(member) == 1;
 	}
 	
 	@Override
 	public MemberVO getMember(String memberId) {
-		return mapper.selectMember(MemberId);
+		return mapper.selectMember(memberId);
 	}
 	
 	@Override

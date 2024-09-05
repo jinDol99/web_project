@@ -9,10 +9,10 @@
 	<p style="color: red;"><c:out value="${message }"></c:out></p>
 </c:if>
 
-<form action="login.do" method="posts">
+<form action="login.do" method="post">
 	<table class="table">
 		<tr>
-			<th>아이디</th><td><input type="text" name="id></td>
+			<th>아이디</th><td><input type="text" name="id"></td>
 		</tr>
 		<tr>
 			<th>비밀번호</th><td><input type="password" name="pw"></td>
