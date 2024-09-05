@@ -13,14 +13,16 @@
 			<div class="col-sm-4">
 				<select name="searchCondition" class="form-control">
 					<option value="">선택하세요</option>
-					<option value="T">제목</option>
-					<option value="W">작성자</option>
-					<option value="TW">제목 & 작성자</option>
+					<!-- 페이징이 넘어가도 값이 유지되도록 한번 지정하면 변수에 해당 값 저장  -->
+					<option value="T" ${sc eq 'T' ? 'selected' : '' }>제목</option>
+					<option value="W" ${sc eq 'W' ? 'selected' : '' }>작성자</option>
+					<option value="TW" ${sc eq 'TW' ? 'selected' : '' }>제목 & 작성자</option>
 				</select>
 			</div>
 			<!-- 키워드 -->
 			<div class="col-sm-5">
-				<input type="text" name="keyword" class="form-control">
+				<!-- 키워드 input에 변수값을 입력하여 페이징이 넘어가도 값을 출력 -->
+				<input type="text" name="keyword" class="form-control" value="${kw}">
 			</div>
 			<!-- 조회버튼 -->
 			<div class="col-sm-2">
@@ -46,7 +48,8 @@
 				<c:forEach var="board" items="${list}">
 					<tr>
 						<td><c:out value=" ${board.boardNo }" /></td>
-						<td><a href="board.do?page=${paging.page}&bno=${board.boardNo }">${board.title }</a></td>
+						<!-- kw와 sc를 추가해서 URI 파라미터를 추가함 [3-1] -->
+						<td><a href="board.do?keyword=${kw}&searchCondition=${sc}&page=${paging.page}&bno=${board.boardNo }">${board.title }</a></td>
 						<td>${board.writer }</td>
 						<td><fmt:formatDate value="${board.creationDate }" pattern="yyyy.MM.dd HH:mm:ss"/>  </td>
 					</tr>	

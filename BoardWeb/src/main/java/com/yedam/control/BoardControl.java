@@ -16,7 +16,15 @@ public class BoardControl implements Control {
 	
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String boardNo = request.getParameter("bno");
+		String boardNo = request.getParameter("bno");	// 상세
+//		String 
+		
+		
+		
+		// 검색조건 파라미터. URI에 2개(searchCondition, keyword) 포함된거 가져옴. [3-2]
+		String sc = request.getParameter("searchCondition");
+		String kw = request.getParameter("keyword");
+		
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO board = svc.getBoard(Integer.parseInt(boardNo));
@@ -28,6 +36,10 @@ public class BoardControl implements Control {
 		
 		request.setAttribute("board", board);
 		request.setAttribute("paging", currentPaging);
+		
+		//jsp 페이지에 전달 [3-3]
+		request.setAttribute("sc", sc);
+		request.setAttribute("kw", kw);
 		
 		// 카운트 증가 : 이걸... 했던가???
 //		svc.addViewCount(Integer.parseInt(boardNo));

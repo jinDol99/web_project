@@ -22,6 +22,9 @@ public class RemoveBoardControl implements Control {
 		String bno = request.getParameter("bno");	// 상세조회 할 게시글 번호
 		String page = request.getParameter("paging");
 		
+		// 검색조건 파라미터. URI에 2개(searchCondition, keyword) 포함된거 가져옴. [4-2]
+		String sc = request.getParameter("searchCondition");
+		String kw = request.getParameter("keyword");
 		
 		// 로그인 정보
 		HttpSession session = request.getSession();
@@ -41,9 +44,9 @@ public class RemoveBoardControl implements Control {
 		}
 		
 		// 게시글 정상 삭제
-		if (svc.removeBoard(Integer.parseInt(bno))) {
-//			request.setAttribute("paging", page);				// getRequestDispatcher()와 달리, sendRedirect()는 파라미터에 request와 response 정보를 담지 못하기 때문에
-			response.sendRedirect("boardList.do?page=" + page);	// URI에 파라미터(?page=...)를 담는 방식으로 전달함.
+		if (svc.removeBoard(Integer.parseInt(bno))) {			// getRequestDispatcher()와 달리, sendRedirect()는 파라미터에 request와 response 정보를 담지 못하기 때문에
+//			request.setAttribute("paging", page);				// URI에 파라미터(?page=...)를 담는 방식으로 전달함.
+			response.sendRedirect("boardList.do?page=" + page + "&searchCondition=" + sc + "&keyword=" + kw);	// sc, kw 추가 [4-3]
 		}
 		
 
