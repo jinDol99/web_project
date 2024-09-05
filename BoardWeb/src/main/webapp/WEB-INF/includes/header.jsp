@@ -18,7 +18,7 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="sidebar-heading border-bottom bg-light">Bootstrap (${empty logid ? '손님' : logName })</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">회원등록</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원목록</a>
@@ -28,10 +28,10 @@
 	                    	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인화면</a>                                        	
                     	</c:when>
                     	<c:otherwise>	<!-- 로그인 상태 -->
-		                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그아웃</a>            	
+		                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃(${logid })</a>            	
                     	</c:otherwise>
                     </c:choose>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addboardForm.do">글 등록</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
                 </div>
             </div>

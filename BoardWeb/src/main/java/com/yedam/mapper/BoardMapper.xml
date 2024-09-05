@@ -11,14 +11,15 @@
 		      , writer
 		      , view_cnt
 		      , creation_date
+		      , image
 		FROM 	tbl_board
 		ORDER BY board_no DESC
 	</select> 
 	
 	
 	<insert id="insertBoard" parameterType="board">		<!-- SQL에 `#{}`이 있다면 parameterType 속성! -->
-		INSERT INTO tbl_board (board_no, title, content, writer)
-		VALUES (board_seq.nextval, #{title}, #{content}, #{writer});
+		INSERT INTO tbl_board (board_no, title, content, writer, image)
+		VALUES (board_seq.nextval, #{title}, #{content}, #{writer}, #{iamge});
 	</insert>
 	
 	
@@ -62,15 +63,42 @@
 	<select id="selectCount" resultType="int">
 		SELECT count(1)
 		from tbl_board
+		WHERE 
+       		<choose>
+       			<when test="searchCondition == 'T'.toString()">
+       			title LIKE '%'||#{keyword}||'%'
+       			</when>
+       			<when test="searchCondition == 'W'.toString()">
+       			writer LIKE '%'||#{keyword}||'%'
+       			</when>
+       			<otherwise>
+       			title LIKE '%'||#{keyword}||'%'
+       			OR writer LIKE '%'||#{keyword}||'%'
+       			</otherwise>
+       		</choose>	
 	</select>
 	
 
-	<!--  SQL 쿼리 속 `<`같은 꺾쇠는 태그로 인식할 수 있음 해당 부분을 <![CDATA[ .. ]]> 로 감싸주면 해결됨.-->
-	<select id="selectListPaging" parameterType="int" resultType="board">
+	<!-- SQL 쿼리 속 `<`같은 꺾쇠는 태그로 인식할 수 있음 해당 부분을 <![CDATA[ .. ]]> 로 감싸주면 해결됨.-->
+	<!-- if-else와 같은 구문은 <choose> <when>으로 사용할 수 있으며,  -->
+	<select id="selectListPaging" parameterType="com.yedam.common.SearchDTO" resultType="board">
 		SELECT C.*
 		FROM (  SELECT rownum rn, b.*
         		FROM (	SELECT *					
-                		FROM tbl_board				
+                		FROM tbl_board	
+                		WHERE 
+                		<choose>
+                			<when test="searchCondition == 'T'.toString()">
+                			title LIKE '%'||#{keyword}||'%'
+                			</when>
+                			<when test="searchCondition == 'W'.toString()">
+                			writer LIKE '%'||#{keyword}||'%'
+                			</when>
+                			<otherwise>
+                			title LIKE '%'||#{keyword}||'%'
+                			OR writer LIKE '%'||#{keyword}||'%'
+                			</otherwise>
+                		</choose>			
                  		ORDER BY board_no desc) b
 <![CDATA[													
        		 	WHERE rownum <= #{page} * 5 ) c

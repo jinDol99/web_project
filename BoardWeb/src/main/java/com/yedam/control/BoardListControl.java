@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
+import com.yedam.common.SearchDTO;
 import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
@@ -18,18 +19,38 @@ public class BoardListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("msg", "hello");
 		String page = request.getParameter("page");
 		page = page == null ? "1" : page;	// page값이 null이면이면 1을 기본값으로 넣음
 		
-		BoardService svc = new BoardServiceImpl();
-		List<BoardVO> list = svc.boardList(Integer.parseInt(page));
-		request.setAttribute("list", list);
 		
-		// 페이징 처리를 위한 기능
-		int totalCnt = svc.getTotalCnt();
-		PageDTO paging = new PageDTO(Integer.parseInt(page), totalCnt);
-		request.setAttribute("paging", paging);
+		// 검색조건 파라미터. URI에 2개(searchCondition, keyword) 포함된거 가져옴.
+		String sc = request.getParameter("searchCondition");
+		String kw = request.getParameter("keyword");
+		
+		if (sc == null || kw == null || sc.isEmpty() || kw.isEmpty()) {		// 검색 조건이 없으면...
+			request.setAttribute("message", "검색 조건을 입력하세요.");
+			
+		} else {
+			SearchDTO search = new SearchDTO();
+			search.setSearchCondition(sc);		// T, W, TW
+			search.setKeyword(kw);				// Java, html...
+			search.setPage(Integer.parseInt(page));
+			
+			
+			BoardService svc = new BoardServiceImpl();
+			List<BoardVO> list = svc.boardList(search);
+			request.setAttribute("list", list);
+			
+			// 페이징 처리를 위한 기능
+			int totalCnt = svc.getTotalCnt(search);
+			PageDTO paging = new PageDTO(Integer.parseInt(page), totalCnt);
+			request.setAttribute("paging", paging);
+			
+			
+			// jsp 페이지에 전달
+			request.setAttribute("sc", sc);
+			request.setAttribute("kw", kw);
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/boardList.jsp");
 		rd.forward(request, response);

@@ -16,16 +16,21 @@ public class BoardControl implements Control {
 	
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bno = request.getParameter("bno");
+		String boardNo = request.getParameter("bno");
 		
 		BoardService svc = new BoardServiceImpl();
-		BoardVO board = svc.getBoard(Integer.parseInt(bno));
+		BoardVO board = svc.getBoard(Integer.parseInt(boardNo));
+		
+		System.out.println(board.getBoardNo());
 		
 		int currentPaging = Integer.parseInt(request.getParameter("page"));
 		System.out.println(currentPaging);
 		
 		request.setAttribute("board", board);
 		request.setAttribute("paging", currentPaging);
+		
+		// 카운트 증가 : 이걸... 했던가???
+//		svc.addViewCount(Integer.parseInt(boardNo));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/board.jsp");
 		rd.forward(request, response);

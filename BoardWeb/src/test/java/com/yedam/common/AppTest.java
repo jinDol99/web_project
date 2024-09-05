@@ -2,7 +2,6 @@ package com.yedam.common;
 
 import com.yedam.service.BoardService;
 import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
 
 public class AppTest {
 	public static void main(String[] args) {
@@ -35,30 +34,39 @@ public class AppTest {
 			System.out.println(board.toString());
 		});
 		 */
-		BoardVO board = new BoardVO();
-		board.setTitle("입력테스트");
-		board.setContent("내용입니다.");
-		board.setWriter("kim");
+//		BoardVO board = new BoardVO();
+//		board.setTitle("입력테스트");
+//		board.setContent("내용입니다.");
+//		board.setWriter("kim");
+//		
+//		
+//		BoardVO board2 = new BoardVO();
+//		board2.setTitle("aaaaaaaaaaaaaaa");
+//		board2.setContent("bbbbbbbbbbbbbbbbbbbbbbbb");
+//		board2.setWriter("kimpark");
+//		board.setBoardNo(255);
+//		
+//		BoardService svc = new BoardServiceImpl();
+//		
+////		svc.addBoard(board);
+//		svc.modifyBoard(board2);
+//		svc.removeBoard(4);
+//		
+//		System.out.println(svc.getBoard(board.getBoardNo()));
+//		
+//		
+//		svc.boardList().forEach(System.out::println);	// board -> System.out.println(board)  이거 줄임말임
 		
 		
-		BoardVO board2 = new BoardVO();
-		board2.setTitle("aaaaaaaaaaaaaaa");
-		board2.setContent("bbbbbbbbbbbbbbbbbbbbbbbb");
-		board2.setWriter("kimpark");
-		board.setBoardNo(255);
+		
+		//== 검색 테스트 ==//
+		SearchDTO search = new SearchDTO();
+		search.setSearchCondition("T");
+		search.setKeyword("Java");
+		search.setPage(1);
 		
 		BoardService svc = new BoardServiceImpl();
-		
-//		svc.addBoard(board);
-		svc.modifyBoard(board2);
-		svc.removeBoard(4);
-		
-		System.out.println(svc.getBoard(board.getBoardNo()));
-		
-		
-		svc.boardList().forEach(System.out::println);	// board -> System.out.println(board)  이거 줄임말임
-		
-		
+		svc.boardList(search).forEach(System.out::println);		
 		
 	}
 }
