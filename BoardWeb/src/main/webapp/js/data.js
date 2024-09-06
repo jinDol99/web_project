@@ -1,0 +1,35 @@
+
+//== data.js ==//
+
+const json = `
+[{"id":1,"first_name":"Bradford","last_name":"Keam","email":"bkeam0@samsung.com","gender":"Male","salary":7103},
+{"id":2,"first_name":"Gill","last_name":"Just","email":"gjust1@si.edu","gender":"Male","salary":6971},
+{"id":3,"first_name":"Sherri","last_name":"MacUchadair","email":"smacuchadair2@irs.gov","gender":"Female","salary":9780},
+{"id":4,"first_name":"Camella","last_name":"Billin","email":"cbillin3@yahoo.com","gender":"Genderqueer","salary":6926},
+{"id":5,"first_name":"Maxine","last_name":"Phelp","email":"mphelp4@google.co.uk","gender":"Female","salary":3792},
+{"id":6,"first_name":"Ryann","last_name":"O'Sullivan","email":"rosullivan5@bluehost.com","gender":"Female","salary":7590},
+{"id":7,"first_name":"Bendix","last_name":"McCarl","email":"bmccarl6@wired.com","gender":"Male","salary":9485},
+{"id":8,"first_name":"Frieda","last_name":"Fryett","email":"ffryett7@opera.com","gender":"Female","salary":4552},
+{"id":9,"first_name":"Rozamond","last_name":"Clitsome","email":"rclitsome8@bloomberg.com","gender":"Female","salary":7580},
+{"id":10,"first_name":"Ree","last_name":"Stouther","email":"rstouther9@latimes.com","gender":"Female","salary":3589},
+{"id":11,"first_name":"Craig","last_name":"Huncote","email":"chuncotea@ameblo.jp","gender":"Male","salary":8465},
+{"id":12,"first_name":"Cecil","last_name":"Hurich","email":"churichb@umn.edu","gender":"Male","salary":5471},
+{"id":13,"first_name":"Annabella","last_name":"Brittlebank","email":"abrittlebankc@auda.org.au","gender":"Female","salary":7469},
+{"id":14,"first_name":"Corri","last_name":"Dallosso","email":"cdallossod@prlog.org","gender":"Female","salary":3245},
+{"id":15,"first_name":"Mallorie","last_name":"Westbury","email":"mwestburye@washington.edu","gender":"Genderqueer","salary":4299},
+{"id":16,"first_name":"Eliot","last_name":"Milne","email":"emilnef@shutterfly.com","gender":"Male","salary":9291},
+{"id":17,"first_name":"Page","last_name":"Sauvan","email":"psauvang@princeton.edu","gender":"Female","salary":9345},
+{"id":18,"first_name":"Maggy","last_name":"Gabbidon","email":"mgabbidonh@a8.net","gender":"Female","salary":4473},
+{"id":19,"first_name":"Wallis","last_name":"Orhtmann","email":"worhtmanni@disqus.com","gender":"Female","salary":3594},
+{"id":20,"first_name":"Axel","last_name":"Peealess","email":"apeealessj@tumblr.com","gender":"Male","salary":5327},
+{"id":21,"first_name":"Bald","last_name":"Arrow","email":"barrowk@nba.com","gender":"Male","salary":9161},
+{"id":22,"first_name":"Taber","last_name":"Bucknill","email":"tbucknilll@bbb.org","gender":"Male","salary":7472},
+{"id":23,"first_name":"Karlotte","last_name":"Stuck","email":"kstuckm@mlb.com","gender":"Female","salary":9598},
+{"id":24,"first_name":"Andreas","last_name":"Loud","email":"aloudn@photobucket.com","gender":"Male","salary":5308},
+{"id":25,"first_name":"Marilee","last_name":"Cheeseman","email":"mcheesemano@discuz.net","gender":"Female","salary":9309},
+{"id":26,"first_name":"Adara","last_name":"Duckerin","email":"aduckerinp@dedecms.com","gender":"Female","salary":3007},
+{"id":27,"first_name":"Raphaela","last_name":"Krystof","email":"rkrystofq@census.gov","gender":"Female","salary":7440},
+{"id":28,"first_name":"Neville","last_name":"Anfossi","email":"nanfossir@forbes.com","gender":"Male","salary":5303},
+{"id":29,"first_name":"Carina","last_name":"Teare","email":"cteares@wunderground.com","gender":"Agender","salary":8377},
+{"id":30,"first_name":"Rafael","last_name":"Corrie","email":"rcorriet@eventbrite.com","gender":"Male","salary":7662}]
+`;

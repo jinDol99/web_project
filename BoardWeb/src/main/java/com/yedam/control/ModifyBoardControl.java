@@ -41,7 +41,8 @@ public class ModifyBoardControl implements Control {
 				response.sendRedirect("boardList.do");
 			} else {
 				request.setAttribute("message", boardNo + "수정할 정보가 없습니다.");
-				request.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(request, response);
+//				request.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(request, response);
+				request.getRequestDispatcher("html/modifyForm.tiles").forward(request, response);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

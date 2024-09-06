@@ -23,7 +23,8 @@ public class GetMemberControl implements Control {
 		MemberVO mvo = svc.getMember(id);
 		
 		req.setAttribute("memberInfo", mvo);
-		req.getRequestDispatcher("WEB-INF/html/memberInfo.jsp").forward(req, resp);
+//		req.getRequestDispatcher("WEB-INF/html/memberInfo.jsp").forward(req, resp);
+		req.getRequestDispatcher("html/memberInfo.tiles").forward(req, resp);
 		
 
 	}

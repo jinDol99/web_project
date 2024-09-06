@@ -23,7 +23,8 @@ public class LoginControl implements Control{
 		
 		if (member == null) {
 			request.setAttribute("message", "아이디와 비밀번호를 확인하세요.");
-			request.getRequestDispatcher("WEB-INF/html/logForm.jsp").forward(request, response);
+//			request.getRequestDispatcher("WEB-INF/html/logForm.jsp").forward(request, response);
+			request.getRequestDispatcher("html/logForm.tiles").forward(request, response);
 			return;
 		}
 	
@@ -32,7 +33,19 @@ public class LoginControl implements Control{
 		session.setAttribute("logid", id);	// 세션에 로그인 아이디 값(id)을 logid 이름으로 저장
 		session.setAttribute("logName", member.getMemberName());
 		
-		response.sendRedirect("boardList.do");
+//		response.sendRedirect("boardList.do");
+		
+		
+		System.out.println("[LoginControl.java] member.getAuthority() : " + member.getAuthority());
+		
+		// 일반 사용자, 관리자용 main 페이지를 다른 템플릿에서 실행
+		if(member.getAuthority().equals("User")) {
+			System.out.println("[LoginControl.java] User 페이지 이동");
+			request.getRequestDispatcher("main/main.tiles").forward(request, response);
+		} else if(member.getAuthority().equals("Admin")){
+			System.out.println("[LoginControl.java] Admin 페이지 이동");
+			request.getRequestDispatcher("admin/layoutAdmin/template.tiles").forward(request, response);
+		}
 	
 	}
 }

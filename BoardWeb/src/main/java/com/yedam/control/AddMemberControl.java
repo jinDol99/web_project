@@ -30,7 +30,8 @@ public class AddMemberControl implements Control {
 //			out.print(req, res);
 			response.sendRedirect("memberList.do");
 		} else {
-			request.getRequestDispatcher("WEB-INF/html/addFrom.jsp").forward(request, response);
+//			request.getRequestDispatcher("WEB-INF/html/addFrom.jsp").forward(request, response);
+			request.getRequestDispatcher("html/addFrom.tiles").forward(request, response);
 		}
 		
 		

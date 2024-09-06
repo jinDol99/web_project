@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.control.IntroControl;
+import com.yedam.control.JavascriptControl;
 import com.yedam.control.MainControl;
 import com.yedam.control.SubControl;
 
 // url에서 맨 마지막이 ".do"로 끝나는 모든 url은 모두 아래 코드를 실행
-@WebServlet("*.do")
+//@WebServlet("*.do")
+@WebServlet()
 public class FrontController extends HttpServlet {
 	
 	// == URL Pattern == //
@@ -36,6 +38,8 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl());
 		map.put("/sub.do", new SubControl());
 		map.put("/intro.do", new IntroControl());
+		map.put("/javascript.do", new JavascriptControl());
+		
 		
 		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
 		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();

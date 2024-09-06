@@ -47,6 +47,7 @@
 				,password
 				,email
 				,creation_date
+				,authority
 		FROM	tbl_member
 		WHERE	member_id = #{id}
 		  AND	password = #{pw}

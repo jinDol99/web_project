@@ -44,7 +44,8 @@ public class BoardControl implements Control {
 		// 카운트 증가 : 이걸... 했던가???
 //		svc.addViewCount(Integer.parseInt(boardNo));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/board.jsp");
+//		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/board.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/board.tiles");
 		rd.forward(request, response);
 		
 	}

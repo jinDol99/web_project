@@ -26,7 +26,8 @@ public class BoardUpdateControl implements Control {
 		System.out.println(bvo.getWriter());
 		
 		request.setAttribute("board", bvo);
-		request.getRequestDispatcher("WEB-INF/board/boardUpdate.jsp").forward(request, response);
+//		request.getRequestDispatcher("WEB-INF/board/boardUpdate.jsp").forward(request, response);
+		request.getRequestDispatcher("board/boardUpdate.tiles").forward(request, response);
 	}
 
 }

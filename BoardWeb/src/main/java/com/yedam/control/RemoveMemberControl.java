@@ -29,7 +29,8 @@ public class RemoveMemberControl implements Control {
 			resp.sendRedirect("memberList.do");
 		} else {
 			req.setAttribute("message", id + "삭제할 정보가 없습니다.");
-			req.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(req, resp);
+//			req.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("html/modifyForm.tiles").forward(req, resp);
 		}
 
 	}

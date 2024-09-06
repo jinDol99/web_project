@@ -39,7 +39,8 @@ public class RemoveBoardControl implements Control {
 			request.setAttribute("board", board);
 			request.setAttribute("paging", page);
 			
-			request.getRequestDispatcher("WEB-INF/board/board.jsp").forward(request, response);
+//			request.getRequestDispatcher("WEB-INF/board/board.jsp").forward(request, response);
+			request.getRequestDispatcher("board/board.tiles").forward(request, response);
 			return;
 		}
 		

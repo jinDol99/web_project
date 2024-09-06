@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>글 상세 페이지</h3>
 
 <form action="modifyBoard.do" method="post">
@@ -29,5 +28,3 @@
 	</tr>
 </table>
 </form>
-
-<jsp:include page="../includes/footer.jsp"></jsp:include>

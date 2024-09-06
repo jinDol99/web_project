@@ -50,9 +50,11 @@ public class BoardListControl implements Control {
 			// jsp 페이지에 전달
 			request.setAttribute("sc", sc);
 			request.setAttribute("kw", kw);
+			System.out.println("[BoardListControl.java] 페이지 전달 완료!");
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/boardList.jsp");
+//		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/boardList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/boardList.tiles");
 		rd.forward(request, response);
 	}
 }

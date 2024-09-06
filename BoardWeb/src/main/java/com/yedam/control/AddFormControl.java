@@ -15,7 +15,8 @@ public class AddFormControl implements Control {
 		// addForm.do 요청 -> 요청재지정(WEB-INF/html/addForm.jsp)
 		
 		request.setAttribute("msg", "Hello, World!");	// request 객체에 msg 전달
-		request.getRequestDispatcher("WEB-INF/html/addForm.jsp").forward(request, response);
+//		request.getRequestDispatcher("WEB-INF/html/addForm.jsp").forward(request, response);
+		request.getRequestDispatcher("html/addForm.tiles").forward(request, response);
 		
 		/* 이게 맞나? 일단 addMemberServlet.java에서 그대로 긁어 옴
 		String id = request.getParameter("id"); // 웹 브라우저(사용자)의 요청정보 중 id 값을 읽어들임
