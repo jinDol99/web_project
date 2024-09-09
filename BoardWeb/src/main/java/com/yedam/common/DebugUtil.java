@@ -4,7 +4,7 @@ public class DebugUtil {
     
 	 // ANSI 색상 코드
     private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_YELLOW = "\u001B[93m";
 
     // 현재 파일명과 변수값을 출력하는 메서드
     public static void printcurrVal(String varName, Object value) {

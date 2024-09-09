@@ -43,9 +43,14 @@ public class FrontController extends HttpServlet {
 		
 		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
 		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
+	
+		// [5-1]. 댓글 기능을 만들기 위해 새로운 컨트롤러 
+		Map<String, Control> replyMenu = MenuReply.getInstance().menuMap();
+		
 		
 		map.putAll(memberMenu);		// 멤버 관련 메뉴 추가
-		map.putAll(boardMenu);		// 게시글 관련 메뉴 추가		
+		map.putAll(boardMenu);		// 게시글 관련 메뉴 추가	
+		map.putAll(replyMenu);		// 댓글 관련 메뉴 추가	
 		
 		
 		

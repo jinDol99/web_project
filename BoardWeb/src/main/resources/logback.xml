@@ -16,6 +16,11 @@
     <level value="debug"/>
   </logger>
   
+  <!-- [5-12] 콘솔창 로그 확인하기 위해 logback에 replyMapper 추가 -->
+  <logger name="com.yedam.mapper.ReplyMapper">
+    <level value="debug"/>
+  </logger>
+  
   <root level="error">
     <appender-ref ref="stdout"/>
   </root>

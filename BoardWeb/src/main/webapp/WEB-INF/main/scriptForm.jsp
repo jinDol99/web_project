@@ -54,48 +54,65 @@
 <hr>
 
 <div>
-	salary: <input id="salary"><br>
-	gender: <select id="gender">
-				<option value="Male">남성</option>
-				<option value="Female">여성</option>				
-			</select>
-			<button id="searchBtn">검색</button>
+	salary: <input id="salary"><br> gender: <select
+		id="gender">
+		<option value="Male">남성</option>
+		<option value="Female">여성</option>
+	</select>
+	<button id="searchBtn">검색</button>
 </div>
-<!-- TODO salary 입력값보다 크고 gender 값과 일치하는 목록을 콘솔에 출력 -->
-<!-- TODO basic.4.js 참고하여 주말동안 만들어 볼것! -->
 
-<script src="js/basic.js"></script>
+
+<!-- <h3>목록</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>아이디</th>
+			<th>FisrtName</th>
+			<th>LastName</th>
+			<th>Gender</th>
+			<th>salary</th>
+			<th>DELETE</th>
+		</tr>
+	</thead>
+
+	<tbody class="list">
+	</tbody>
+</table> -->
+
+<h3>목록</h3>
+<table class="table">
+	<tr>
+		<td>댓글 내용: <input type="text" id="reply"></td>
+		<td><button id="addReply">댓글등록</button> 
+	</tr>
+</table>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th><input type='checkbox' id='checkAllBox' onclick='checkAll()'></th>
+			<th>댓글번호</th>
+			<th>댓글내용</th>
+			<th>작성자</th>
+			<th>작성일시</th>
+			<th><button id='delChecked'>선택삭제</button></th>
+		</tr>
+	</thead>
+
+	<tbody class="list">
+	</tbody>
+</table>
+
+<!-- <script src="js/basic.js" ></script>
 <script src="js/basic2.js"></script>
 <script src="js/basic3.js"></script>
 
 <script src="js/data.js"></script>
 <script src="js/basic4.js"></script>
 
+<script src="js/ajax.js"></script>				console.log로 동기 & 비동기 실습
+<script src="js/xmlhttprequest.js"></script>	JSON 데이터를 table에 넣고 동적으로 삭제 -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="js/reply.js"></script>

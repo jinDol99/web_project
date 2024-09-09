@@ -1,7 +1,9 @@
 package com.yedam.common;
 
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.yedam.mapper.ReplyMapper;
 
 public class AppTest {
 	public static void main(String[] args) {
@@ -60,13 +62,29 @@ public class AppTest {
 		
 		
 		//== 검색 테스트 ==//
-		SearchDTO search = new SearchDTO();
-		search.setSearchCondition("T");
-		search.setKeyword("Java");
-		search.setPage(1);
+//		SearchDTO search = new SearchDTO();
+//		search.setSearchCondition("T");
+//		search.setKeyword("Java");
+//		search.setPage(1);
+//		
+//		BoardService svc = new BoardServiceImpl();
+//		svc.boardList(search).forEach(System.out::println);	
 		
-		BoardService svc = new BoardServiceImpl();
-		svc.boardList(search).forEach(System.out::println);		
+		/*
+		// [5-14] 실행 테스트
+		ReplyService svc = new ReplyServiceImpl();
+		svc.replyList(149).forEach(reply -> System.out.println(reply));
+		*/
+		
+		// 여러 댓글 삭제 테스트
+		SqlSessionFactory factory = DataSource.getInstance();
+		SqlSession session = factory.openSession(true);
+		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		
+		String[] arg = {"13", "14", "15", "16"};
+		
+		mapper.deleteReplys(arg);
+		
 		
 	}
 }
