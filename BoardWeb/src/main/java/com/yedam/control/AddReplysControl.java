@@ -37,9 +37,10 @@ public class AddReplysControl implements Control {
 			response.getWriter().print("{\"retCode\": \"OK\", "
 					+ "\"retVal\": {\"replyDate\": \"" + reply.getReplyDate() 
 					+  "\"replyNo\": " + reply.getReplyNo()
-					+ ", \"reply\": \"replyInput\", \"replyer\": \"replyerInput\", \"boardNo\": " + reply.getBoardNum() + "}}");
+					+ ", \"reply\": " + reply.getReply()
+					+ ", \"replyer\": " + reply.getReplyer()
+					+ ", \"boardNo\": " + reply.getBoardNum() + "}}");
 			
-			// TODO!!!! 이거 마자 해야함!!!
 		} else {
 			response.getWriter().print("{\"retCode\": \"NG\"}");
 		}

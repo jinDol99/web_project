@@ -9,16 +9,17 @@ let bno = 148;			// 여기선 명시적으로 user01이 148번 게시글에 댓�
 document.querySelector('#addReply').addEventListener('click', function() {
 	let reply = document.querySelector('#reply').value;
 	
-	const delHtp = new XMLHttpRequest();
-	delHtp.open('get', '/addReplys.do?replyer=' + replyer + '&bno=' + bno + '&reply=' + reply);
-	delHtp.send();
-	delHtp.onload = function() {
-		let result = JSON.parse(delHtp.responseText);
+	const addHtp = new XMLHttpRequest();
+	addHtp.open('get', 'addReplys.do?bno=' + bno + '&reply=' + reply + '&replyer=' + replyer);
+	addHtp.send();
+	addHtp.onload = function() {
+		console.log(addHtp.responseText);
+		let result = JSON.parse(addHtp.responseText);
 		console.log(result);	// retCode, retVal =>{}
 		let tr = makeRow(result.retVal)
-		/*document.document.querySelector('.list').appendChild	// TODO*/
+		document.document.querySelector('.list').appendChild(tr);
 	}
-});
+})
 
 /*
 // 댓글등록 함수 실행
@@ -150,7 +151,7 @@ function delCheckedFunc1(e) {
 	})
 	
 	const delHtp = new XMLHttpRequest();
-	delHtp.open('get', '/removeReplys.do?' + params);
+	delHtp.open('get', 'removeReplys.do?' + params);
 	delHtp.send();
 	delHtp.onload = function() {
 		let result = JSON.parse(delHtp.responseText);

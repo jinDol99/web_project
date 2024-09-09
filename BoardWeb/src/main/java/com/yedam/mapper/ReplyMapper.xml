@@ -34,11 +34,8 @@
 	
 	<insert id="addReply" parameterType="com.yedam.vo.ReplyVO">
 		INSERT INTO tbl_reply (reply_no, replyer, reply, board_num)
-		VALUES (reply_seq.NEXTVAL, #{replyer}, #{reply}, #{boardNum});
+		VALUES (reply_seq.NEXTVAL, #{replyer}, #{reply}, #{boardNum})
 	</insert>
 	
-	<update id="addReply" parameterType="">
-	
-	</update>
 
 </mapper>
