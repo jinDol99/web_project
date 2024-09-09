@@ -33,3 +33,30 @@ let filterResult = data.filter(function (item, index, ary) {
 });
 
 console.log(filterResult);
+
+
+
+// ========== [24.09.08 숙제 완성] ============= //
+console.clear();
+let searchBtn = document.querySelector("#searchBtn");
+
+searchBtn.addEventListener("click", function() {
+	console.clear();
+	
+	let salarySrch = document.getElementById("salary").value;
+	let genderSrch = document.querySelector("#gender").value;
+	console.log(salary + gender);
+		
+	let searchResult = data.filter(function(item, index, array) {
+		if(item.salary > salarySrch && item.gender == genderSrch) {
+			console.log(item);
+			return true;
+		}
+	})
+});
+
+
+
+
+
+

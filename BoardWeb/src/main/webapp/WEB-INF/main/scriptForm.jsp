@@ -12,6 +12,8 @@
  -->
 </div>
 
+<!-- 
+
 <table>
 	<tr>
 		<th>id</th>
@@ -47,7 +49,10 @@
 		</tr>
 	</tbody>
 </table>
+
+ -->
 <hr>
+
 <div>
 	salary: <input id="salary"><br>
 	gender: <select id="gender">

@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.yedam.common.Control;
 import com.yedam.common.DataSource;
+import com.yedam.common.DebugUtil;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.mapper.MemberMapper;
 import com.yedam.vo.BoardVO;
@@ -26,11 +27,17 @@ public class ModifyBoardControl implements Control {
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
 		
+		String keyword = request.getParameter("keyword");
+		String searchCondition = request.getParameter("searchCondition");
+		int paging = Integer.parseInt(request.getParameter("paging"));
+		
 		BoardVO bvo = new BoardVO();
 		bvo.setBoardNo(boardNo);
 		bvo.setTitle(title);
 		bvo.setWriter(writer);
 		bvo.setContent(content);
+		
+		DebugUtil.printcurrVal("paging", paging);
 		
 		SqlSessionFactory factory = DataSource.getInstance();
 		SqlSession session = factory.openSession(true);

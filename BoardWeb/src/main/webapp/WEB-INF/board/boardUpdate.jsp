@@ -5,9 +5,6 @@
 
 <form action="modifyBoard.do" method="post">
 <input class="form-control" type="text" name="bno" value="${board.boardNo }">
-<input class="form-control" type="text" name="keyword" value="${kw }">
-<input class="form-control" type="text" name="searchCondition" value="${sc }">
-
 
 <table class="table">
 	<tr><td>제목</td><td colspan="3">
@@ -20,8 +17,13 @@
 		<input class="form-control" type="text" name="content" value="${board.content }"></td></tr>
 	<tr>
 		<td colspan="4" align="center">
+			<input type="text" name="keyword"  value="${kw }">
+			<input type="text" name="searchCondition"  value="${sc }">
+			<input type="text" name="paging"  value="${paging }">
 			<input class="btn btn-primary" type="submit" value="완료">
-      		<input type="button" class="btn btn-secondary" value="취소">
+      		<input type="button" class="btn btn-secondary" 
+      				onclick="location.href='boardList.do?keyword=${kw}&searchCondition=${sc}&page=${paging}'" 
+      				value="취소">
 			<%-- <button class="btn btn-info" onclick="location.href='modifyBoard.do?page=${paging}'">완료</button>
 			<button class="btn btn-secondary" onclick="location.href='boardList.do?page=${paging}'">취소</button> --%>
 		</td>

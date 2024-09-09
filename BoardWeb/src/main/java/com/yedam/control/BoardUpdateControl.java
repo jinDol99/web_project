@@ -18,6 +18,10 @@ public class BoardUpdateControl implements Control {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		System.out.println("[BoardUpdateControl.java] bno : " + bno);
 		
+		String sc = request.getParameter("searchCondition");
+		String kw = request.getParameter("keyword");
+		String paging = request.getParameter("page");
+		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO bvo = svc.getBoard(bno);
 		
@@ -26,6 +30,10 @@ public class BoardUpdateControl implements Control {
 		System.out.println(bvo.getWriter());
 		
 		request.setAttribute("board", bvo);
+		request.setAttribute("sc", sc);
+		request.setAttribute("kw", kw);
+		request.setAttribute("paging", paging);
+		
 //		request.getRequestDispatcher("WEB-INF/board/boardUpdate.jsp").forward(request, response);
 		request.getRequestDispatcher("board/boardUpdate.tiles").forward(request, response);
 	}
