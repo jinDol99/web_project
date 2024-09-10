@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.common.DebugUtil;
 import com.yedam.control.IntroControl;
 import com.yedam.control.JavascriptControl;
 import com.yedam.control.MainControl;
@@ -71,7 +72,8 @@ public class FrontController extends HttpServlet {
 		String uri = req.getRequestURI();					// 만약 http://localhost/BoardWeb/main.do를 접속할 경우, "/BoardWeb/main.do"를 반환. 이 부분을 URI라고 함.
 		String context = req.getContextPath();				// .getContextPath()는 "/BoardWeb"을 반환시켜줌
 		String page = uri.substring(context.length());		// "/BoardWeb/main.do"에서 "/BoardWeb"를 자른 값. 즉, "/main.do"를 가져옴
-		System.out.println(page);
+		
+		DebugUtil.printcurrVal("page", page);
 		
 		
 		Control control = map.get(page);					// 어떤 ".do"냐에 따라 map에 저장(대응)되어 있는 control 생성자를 지정하여 Control 객체 생성

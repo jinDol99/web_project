@@ -21,6 +21,7 @@ public class RemoveReplyControl implements Control {
 		String rno = request.getParameter("rno");
 		
 		DebugUtil.printcurrVal("rno", rno);
+		System.out.println(rno);
 		
 		
 		ReplyService svc = new ReplyServiceImpl();

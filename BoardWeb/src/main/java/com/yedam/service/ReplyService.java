@@ -10,4 +10,5 @@ public interface ReplyService {
 	boolean deleteReply(int rno);		// [5-e] 삭제 메소드 
 	boolean removeDeleteReplys(String[] array);	// 여러 건 삭제 메소드
 	boolean addReply(ReplyVO reply);
+	int selectKey();
 }

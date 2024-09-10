@@ -7,8 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
-import com.yedam.common.DebugUtil;
 import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
 import com.yedam.vo.ReplyVO;
@@ -29,21 +30,26 @@ public class ReplyListControl implements Control {
 		ReplyService svc = new ReplyServiceImpl();
 		List<ReplyVO> list = svc.selectList(Integer.parseInt(bno));
 		
-		String json = "[";
-		for (int i = 0; i < list.size(); i++) {
-			json += "{\"replyNo\":" + list.get(i).getReplyNo() + ","
-					+ "\"replyer\": \"" + list.get(i).getReplyer() + "\", "
-					+ "\"reply\": \"" + list.get(i).getReply() + "\", "
-					+ "\"boardNum\":" + list.get(i).getBoardNum() + ","
-					+ "\"boardNum\": \"" + list.get(i).getReplyDate() + "\" }";
-			
-			System.out.print("JSON: " + json);
-			
-			if ( i != list.size() - 1) {
-				json += ",";
-			}
-		}
-		json += "]";	// json 파일은 배열이므로 시작과 끝을 `[`와 `]`으로 마무리.
+//		String json = "[";
+//		for (int i = 0; i < list.size(); i++) {
+//			json += "{\"replyNo\":" + list.get(i).getReplyNo() + ","
+//					+ "\"replyer\": \"" + list.get(i).getReplyer() + "\", "
+//					+ "\"reply\": \"" + list.get(i).getReply() + "\", "
+//					+ "\"boardNum\":" + list.get(i).getBoardNum() + ","
+//					+ "\"boardNum\": \"" + list.get(i).getReplyDate() + "\" }";
+//			
+//			System.out.print("JSON: " + json);
+//			
+//			if ( i != list.size() - 1) {
+//				json += ",";
+//			}
+//		}
+//		json += "]";	// json 파일은 배열이므로 시작과 끝을 `[`와 `]`으로 마무리.
+		
+		
+		// [6-9] AddReplysControl 뿐만 아니라 여기도 JSON 출력하는 부분을 바꾸자
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();	
+		String json = gson.toJson(list);	/// GSON을 활용해서 JSON 문자열 생성
 		
 		response.getWriter().print(json);
 		System.out.println("출력 완료");

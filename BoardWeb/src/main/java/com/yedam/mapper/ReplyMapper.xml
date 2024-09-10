@@ -32,6 +32,12 @@
 	</delete>
 	
 	
+	<select id="selectKey" resultType="int">
+		SELECT reply_seq.NEXTVAL
+		FROM dual
+	</select>
+	
+	
 	<insert id="addReply" parameterType="com.yedam.vo.ReplyVO">
 		INSERT INTO tbl_reply (reply_no, replyer, reply, board_num)
 		VALUES (reply_seq.NEXTVAL, #{replyer}, #{reply}, #{boardNum})

@@ -28,7 +28,7 @@ public class MenuReply {
 		// [5-a] 이번에는 댓글 삭제를 해보자
 		menu.put("/removeReply.do", new RemoveReplyControl());
 		menu.put("/removeReplys.do", new RemoveReplysControl());
-		menu.put("/addReplys.do", new AddReplysControl());
+		menu.put("/addReply.do", new AddReplysControl());
 		
 		
 		

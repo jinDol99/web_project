@@ -115,4 +115,7 @@
 <script src="js/ajax.js"></script>				console.log로 동기 & 비동기 실습
 <script src="js/xmlhttprequest.js"></script>	JSON 데이터를 table에 넣고 동적으로 삭제 -->
 
-<script src="js/reply.js"></script>
+<!-- [6-3] 두 개의 새로 만든 js를 가져옴. 해당 자바스크립트에서 사용한 전역변수들은 서로서로 공유하여 사용 가능 -->
+<script src="js/replyService.js"></script>
+<script src="js/replyBoard.js"></script>
+<!-- <script src="js/fetch.js"></script> -->

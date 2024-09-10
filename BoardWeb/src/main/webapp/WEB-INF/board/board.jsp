@@ -2,6 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- [7-2-a] 좀 더 보기좋게 하기 위해 간단한 CSS 작업-->
+<style>
+	div.reply div {
+		margin: auto;
+	}
+
+	div.reply ul {
+		list-style-type: none;
+	}
+
+	div.reply span {
+		display: inline-block;
+	}
+
+
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <h3>글 상세 페이지</h3>
 <p>searchCondition: ${sc }, keyword: ${kw }</p>
@@ -38,9 +54,41 @@
 </form>
 
 
+<!-- [7-2] 간단하게 UI를 만들자-->
+<div class="reply">
+	<!--  댓글 등록 폼 -->
+	<div class='header'>
+		<input type="text" id="reply" class="col-sm-8">
+		<button id="addReply" class="btn btn-primary">댓글등록</button>
+	</div>
+	
+	<!-- 댓글 목폭 -->
+	<div class="content">
+		<ul>
+			<li>
+				<span class="col-sm-2">댓글번호</span>
+				<span class="col-sm-2">댓글내용</span>
+				<span class="col-sm-2">작성자</span>
+				<span class="col-sm-2">삭제</span>
+			</li>
+			<li><hr></li>
+			<li id="template" style="display: none;">
+				<span class="col-sm-2">24</span>
+				<span class="col-sm-2">테스트입니다</span>
+				<span class="col-sm-2">user01</span>
+				<span class="col-sm-2"><button class="btn btn-danger">삭제</button></span>
+			</li>
+		</ul>
+	</div>
+</div>
+
 
 
 <script>
+
+const bno = '${board.boardNo}'	// 원본 글 번호
+const writer = '${logid}'		// 로그인 정보
+
 	// [5-3]
 	function form_submit(uri) {
 		// 매개값으로 이동할 컨트롤을 받아서 파라미러틑 전달 [5-4]
@@ -50,6 +98,12 @@
 		document.forms.actForm.submit();
 	}
 </script>
+
+<!-- [8-1] alert같은 알림창을 좀 더 깔끔하게 바꿔주는 라이브러리: Sweetalert2 -->
+<!-- 사용하려면 script src를 위에 넣어준 후... -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/replyService.js"></script>
+<script src="js/replyBoard.js"></script>
 <!-- [ 숙제 ] 
 상세 페이지와 비슷하게 새 페이지를 구현.
 작성자는 수정 안되게끔
