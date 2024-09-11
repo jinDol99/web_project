@@ -77,14 +77,26 @@ public class AppTest {
 		*/
 		
 		// 여러 댓글 삭제 테스트
+		// SqlSessionFactory factory = DataSource.getInstance();
+		// SqlSession session = factory.openSession(true);
+		// ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+		
+		// String[] arg = {"13", "14", "15", "16"};
+		
+		// mapper.deleteReplys(arg);
+		
+
+
+		// [9-5]
 		SqlSessionFactory factory = DataSource.getInstance();
 		SqlSession session = factory.openSession(true);
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
-		
-		String[] arg = {"13", "14", "15", "16"};
-		
-		mapper.deleteReplys(arg);
-		
+
+		SearchDTO search = new SearchDTO();
+		search.setBoardNo(147);
+		search.setPage(1);
+
+		mapper.selectListPaging(search).forEach(reply -> System.out.println(reply.toString()));
 		
 	}
 }

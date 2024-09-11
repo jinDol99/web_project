@@ -7,7 +7,9 @@ import com.yedam.common.Control;
 import com.yedam.control.AddReplysControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.RemoveReplysControl;
+import com.yedam.control.ReplyCountControl;
 import com.yedam.control.ReplyListControl;
+import com.yedam.control.ReplyMenuControl;
 
 // [5-2] 클래스는 기존의 다른 Menuxxx.java 파일을 참고할 것.
 public class MenuReply {
@@ -29,6 +31,11 @@ public class MenuReply {
 		menu.put("/removeReply.do", new RemoveReplyControl());
 		menu.put("/removeReplys.do", new RemoveReplysControl());
 		menu.put("/addReply.do", new AddReplysControl());
+		
+		menu.put("/replyCount.do", new ReplyCountControl());
+		
+		// [11-2]댓글 작성 dataTable용
+		menu.put("/replyTable.do", new ReplyMenuControl());
 		
 		
 		

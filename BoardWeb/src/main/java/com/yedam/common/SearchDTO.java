@@ -8,4 +8,6 @@ public class SearchDTO {
 	private String searchCondition;
 	private String keyword;
 	private int page;
+	// [9-3] 
+	private int boardNo;
 }

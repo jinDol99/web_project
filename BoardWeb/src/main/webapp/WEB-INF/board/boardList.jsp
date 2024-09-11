@@ -2,34 +2,13 @@
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- [10-1] 페이징, 정렬, 검색 등을 편하게 해주는 라이브러리 "datatables"을 사용하기 위해 CSS, Jquery, JS를 추가 -->
+  <!-- Jquery는 홈페이지에서 다운받은 바로 실행 가능한 jquery-3.7.1.js 파일을 그대로 활용. -->
+  <link rel="stylesheet"  href="//cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+  <script src="js/jquery-3.7.1.js"></script>
+  <script src="//cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
 <h3>게시글 목록</h3>
-
-<div class="center">
-	<form action="boardList.do">
-		<div class="row">
-			<!-- 검색 조건(title, writer 검색) -->
-			<div class="col-sm-4">
-				<select name="searchCondition" class="form-control">
-					<option value="">선택하세요</option>
-					<!-- 페이징이 넘어가도 값이 유지되도록 한번 지정하면 변수에 해당 값 저장  -->
-					<option value="T" ${sc eq 'T' ? 'selected' : '' }>제목</option>
-					<option value="W" ${sc eq 'W' ? 'selected' : '' }>작성자</option>
-					<option value="TW" ${sc eq 'TW' ? 'selected' : '' }>제목 & 작성자</option>
-				</select>
-			</div>
-			<!-- 키워드 -->
-			<div class="col-sm-5">
-				<!-- 키워드 input에 변수값을 입력하여 페이징이 넘어가도 값을 출력 -->
-				<input type="text" name="keyword" class="form-control" value="${kw}">
-			</div>
-			<!-- 조회버튼 -->
-			<div class="col-sm-2">
-				<input type="submit" value="조회" class="form-control">
-			</div>
-		</div>
-	</form>
-</div>
 
 <c:choose>
 	<c:when test="${!empty message }">
@@ -37,7 +16,9 @@
 	</c:when>
 	
 	<c:otherwise>
-		<table class="table">
+	<!-- [10-3] 기존의 페이징, 검색 부분 등 필요없는 부분은 모두 지우고 데이터를 모두 가져오는 부분만 남겨둠 -->
+	<!--  그리고 테이블의 속성을 아래와 같이 지정. -->
+		<table id="example" class="display" style="width: 100%">
 			<thead>
 				<tr>
 					<th>글번호</th><th>제목</th><th>작성자</th><th>작성일시</th>
@@ -54,39 +35,19 @@
 					</tr>	
 				</c:forEach>
 			</tbody>
+			<tfoot>
+				<tr>
+					<th>글번호</th><th>제목</th><th>작성자</th><th>작성일시</th>
+				</tr>
+			</tfoot>
 		</table>
-		
-		<!-- 페이징 -->
-		<nav aria-label="...">
-		  <ul class="pagination">
-		    <li class="page-item ${paging.prev ? '' : 'disabled' }">
-		      <a class="page-link" href="boardList.do?keyword=${kw}&searchCondition=${sc}&page=${paging.startPage-1}">Previous</a>
-		    </li>
-			    <c:forEach var="pg" begin="${paging.startPage }" end="${paging.endPage }">
-			    <c:choose>
-			    	<c:when test="${paging.page == pg }">	<!--  현재 페이징일 경우:  -->
-			    		<li class="page-item active" aria-current="page">
-					    	<a class="page-link" href="boardList.do?keyword=${kw}&searchCondition=${sc}&page=${pg}">${pg}</a>
-					    </li>
-			    	</c:when>
-			    	<c:otherwise>							<!-- 현재 페이징 아닐 경우 -->
-			    		<li class="page-item">
-			    			<a class="page-link" href="boardList.do?keyword=${kw}&searchCondition=${sc}&page=${pg}">${pg}</a>
-			   			</li>
-			    	</c:otherwise>
-			    </c:choose>
-			    </c:forEach>
-		    <li class="page-item ${paging.next ? '' : 'disabled' }">
-		      <a class="page-link" href="boardList.do?keyword=${kw}&searchCondition=${sc}&page=${paging.endPage+1}">Next</a>
-		    </li>
-		  </ul>
-		</nav>
-		
-		<p>${paging }</p>
 	</c:otherwise>
 </c:choose>
 
-
+<script>
+	// [10-4] 테이블을 사용하기 위해 자바스크립트에서 새로운 DataTable 객체를 생성
+	new DataTable('#example');
+</script>
 
 
 <%-- 

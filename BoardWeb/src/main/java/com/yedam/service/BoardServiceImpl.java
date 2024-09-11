@@ -18,7 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<BoardVO> boardList(SearchDTO search) {
-		return mapper.selectListPaging(search);
+//		return mapper.selectListPaging(search);
+		// [10-2] 모든 게시글을 가져오기 위해 selectListPaging이 아닌 그냥 selectList를 호출하도록 변경
+		return mapper.selectList();
 	}
 
 	@Override

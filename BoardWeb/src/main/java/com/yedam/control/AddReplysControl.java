@@ -66,7 +66,7 @@ public class AddReplysControl implements Control {
 		}
 		
 		// [6-8-b]
-		String json = gson.toJson(null);	/// map 객체를 json 문자열로 변환
+		String json = gson.toJson(map);	/// map 객체를 json 문자열로 변환
 		response.getWriter().print(json);	/// 출력스트림에 json 문자열 출력
 
 	}

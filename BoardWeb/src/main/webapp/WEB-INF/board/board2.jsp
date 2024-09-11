@@ -17,9 +17,7 @@
 	}
 </style>
 
-<link rel="stylesheet"  href="//cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
-<script src="js/jquery-3.7.1.js"></script>
-<script src="//cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+
 
 <script>
 	const bno = '${board.boardNo}'	// 원본 글 번호
@@ -38,6 +36,22 @@
 <!-- [8-1] alert같은 알림창을 좀 더 깔끔하게 바꿔주는 라이브러리: Sweetalert2 -->
 <!-- 사용하려면 script src를 위에 넣어준 후... -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/replyService.js"></script>
+<script src="js/replyBoard.js"></script>
+<!-- [ 숙제 ] 
+상세 페이지와 비슷하게 새 페이지를 구현.
+작성자는 수정 안되게끔
+수정 완료 or 취소하면 방금 보고있었던 상세페이지로 ㄱㄱ
+
++ 추가 조건
+http://localhost/BoardWeb/boardList.do?keyword=JAVA&searchCondition=T&page=4
+위 검색조건으로 SELECT 한 후 특정 상세 페이지를 들어갔다 나오면 조건이 해제가 되어짐
+상세페이지 조회, 수정을 해도 검색조건이 유지되도록 파라미터를 손보자!
+
+TODO boardUpdate.do 매핑하기!!!! (boardIpdate.jsp는 있음)
+ -->
+
+
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <h3>글 상세 페이지</h3>
@@ -83,25 +97,37 @@
 		<button id="addReply" class="btn btn-primary">댓글등록</button>
 	</div>
 	
-	<!--  댓글 목록 -->
-	<table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>댓글번호</th>
-                <th>내용 </th>
-                <th>작성자</th>
-                <th>작성일시</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>댓글번호</th>
-                <th>내용 </th>
-                <th>작성자</th>
-                <th>작성일시</th>
-            </tr>
-        </tfoot>
-    </table>
+	<!-- 댓글 목록 -->
+	<div class="content">
+		<ul>
+			<li>
+				<span class="col-sm-2">댓글번호</span>
+				<span class="col-sm-2">댓글내용</span>
+				<span class="col-sm-2">작성자</span>
+				<span class="col-sm-2">삭제</span>
+			</li>
+			<li><hr></li>
+			<li id="template" style="display: none;">
+				<span class="col-sm-2">24</span>
+				<span class="col-sm-2">테스트입니다</span>
+				<span class="col-sm-2">user01</span>
+				<span class="col-sm-2"><button class="btn btn-danger">삭제</button></span>
+			</li>
+		</ul>
+	</div>
 </div>
 
-<script src="js/boardTable.js"></script>
+<!-- [9-10] 댓글 페이징(Bootstrap 활용) -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>

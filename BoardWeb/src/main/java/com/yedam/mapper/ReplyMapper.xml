@@ -17,6 +17,27 @@
 	
 	</select>
 
+	<!-- [9-4] 페이징을 위한 SELECT -->
+	<!-- `<=`은 컴파일 오류(여는 태그와 동일)가 발생할 수 있으므로 CDATA를 사용하여 커버쳐주기-->
+	<!-- 다른 말로 하면, CDATA는 SQL 구문 전체를 감싸도 문제는 없음.-->
+	<select id="selectListPaging" parameterType="com.yedam.common.SearchDTO">
+		SELECT b.*
+		FROM (  SELECT /*+ INDEX_DESC (r PK_REPLY) */ rownum rn, r.*
+						FROM tbl_reply r
+						WHERE board_num = #{boardNo}) b
+		<![CDATA[
+		WHERE b.rn <= #{page} * 5
+		]]>
+			AND b.rn > (#{page} - 1) * 5
+	</select>
+	
+	<select id="selectReplyCount" parameterType="int">
+		SELECT count(1)
+		FROM tbl_reply
+		WHERE board_num = #{bno}
+	</select>
+
+
 	<!-- [5-d] -->
 	<delete id="deleteReply" parameterType="int">
 		DELETE FROM tbl_reply

@@ -71,8 +71,9 @@ Date.prototype.dateFormat = function() {
 ///== [6-9] 서비스 메소드를 통해서 ajax 기능을 실행 ==///
 /// 1. 목록, 2. 삭제, 2. 추가, 4. ...
 const svc = {
-	replyList: function(bno=1, successCallback, errorCallback) {	// 매개변수로 1개의 값(bno), 2개의 함수(callback)를 전달
-		fetch('replyList.do?bno=' + bno)
+	// [9-8] 파라미터 설정
+	replyList: function(param = { bno: 1, page: 1 }, successCallback, errorCallback) {	// 매개변수로 1개의 값(bno), 2개의 함수(callback)를 전달
+		fetch('replyList.do?bno=' + param.bno + '&page=' + param.page)
 		.then(resolve => resolve.json())
 		.then(successCallback)				// 통신을 일단 한 뒤, 실행결과에 대해선 호출된 곳으로 다시 건내준다는 의미에서
 		.catch(errorCallback)				// success"Callback"과 error"Callback"을 사용함
@@ -95,6 +96,14 @@ const svc = {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			body: 'bno=' + param.bno + '&reply=' + param.reply + '&replyer=' + param.replyer
 		})
+		.then(resolve => resolve.json())
+		.then(successCallback)
+		.catch(errorCallback)
+	},
+	
+	// [9-14] 댓글 건수를 가져와 페이지 정보를 생성하는 메소드 구현
+	replyPagingCount(bno = 1, successCallback, errorCallback) {
+		fetch('replyCount.do?bno=' + bno)
 		.then(resolve => resolve.json())
 		.then(successCallback)
 		.catch(errorCallback)
