@@ -1,8 +1,12 @@
 package com.yedam.common;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.mapper.ReplyMapper;
 
 public class AppTest {
@@ -88,15 +92,26 @@ public class AppTest {
 
 
 		// [9-5]
-		SqlSessionFactory factory = DataSource.getInstance();
-		SqlSession session = factory.openSession(true);
+//		SqlSessionFactory factory = DataSource.getInstance();
+//		SqlSession session = factory.openSession(true);
+//		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
+//
+//		SearchDTO search = new SearchDTO();
+//		search.setBoardNo(147);
+//		search.setPage(1);
+//
+//		mapper.selectListPaging(search).forEach(reply -> System.out.println(reply.toString()));
+		
+		SqlSession session =  DataSource.getInstance().openSession(true);
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
-
-		SearchDTO search = new SearchDTO();
-		search.setBoardNo(147);
-		search.setPage(1);
-
-		mapper.selectListPaging(search).forEach(reply -> System.out.println(reply.toString()));
+		List<Map<String, Object>> list = mapper.selectEvent();
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(list);
+		System.out.println(json);
+		
+		
+		
 		
 	}
 }

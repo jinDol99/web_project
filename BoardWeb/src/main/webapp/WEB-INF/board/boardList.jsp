@@ -10,12 +10,7 @@
   <script src="//cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
 <h3>게시글 목록</h3>
 
-<c:choose>
-	<c:when test="${!empty message }">
-		<p>검색 결과가 없습니다.</p>
-	</c:when>
-	
-	<c:otherwise>
+
 	<!-- [10-3] 기존의 페이징, 검색 부분 등 필요없는 부분은 모두 지우고 데이터를 모두 가져오는 부분만 남겨둠 -->
 	<!--  그리고 테이블의 속성을 아래와 같이 지정. -->
 		<table id="example" class="display" style="width: 100%">
@@ -41,8 +36,6 @@
 				</tr>
 			</tfoot>
 		</table>
-	</c:otherwise>
-</c:choose>
 
 <script>
 	// [10-4] 테이블을 사용하기 위해 자바스크립트에서 새로운 DataTable 객체를 생성

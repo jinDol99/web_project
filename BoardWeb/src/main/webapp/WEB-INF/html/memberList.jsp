@@ -10,13 +10,11 @@
 <table>
 	<tbody>
 		<tr>
-			<td><a href="getMember.do?id=<%=member.getMemberId()%>"> <%=member.getMemberId()%></a>
+			<%-- <td><a href="getMember.do?id=<%=member.getMemberId()%>"> <%=member.getMemberId()%></a>
 			<td><%=member.getMemberName()%></td>
 			<td><%=member.getEmail()%></td>
-			<td><%=member.getAuthority()%></td>
+			<td><%=member.getAuthority()%></td> --%>
 		</tr>
-<%
-		}
-%>
+
 	</tbody>
 </table>

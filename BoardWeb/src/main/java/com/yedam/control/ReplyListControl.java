@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
+import com.yedam.common.DebugUtil;
 import com.yedam.common.SearchDTO;
 import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
@@ -58,6 +59,8 @@ public class ReplyListControl implements Control {
 		// [6-9] AddReplysControl 뿐만 아니라 여기도 JSON 출력하는 부분을 바꾸자
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();	
 		String json = gson.toJson(list);	/// GSON을 활용해서 JSON 문자열 생성
+		
+		DebugUtil.printcurrVal("json", json);
 		
 		response.getWriter().print(json);
 		System.out.println("출력 완료");

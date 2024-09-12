@@ -10,4 +10,9 @@ public class SearchDTO {
 	private int page;
 	// [9-3] 
 	private int boardNo;
+	
+	
+	String title;
+	String Start;
+	String end;
 }

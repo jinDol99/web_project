@@ -18,7 +18,7 @@ import com.yedam.vo.MemberVO;
 public class ModifyMemberControl implements Control {
 
 	@Override
-	public void exec(HttpServletRequest req, HttpServletResponse resp) {
+	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
 		resp.setContentType("text/html;charset=utf-8");
 
 		// 파라미터 4개 값을 읽어 db 반영 -> 목록으로 이동
@@ -41,7 +41,7 @@ public class ModifyMemberControl implements Control {
 				resp.sendRedirect("memberList.do");
 			} else {
 				req.setAttribute("message", id + "수정할 정보가 없습니다.");
-				req.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(//TODO, //TODO);
+				req.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(req, resp);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

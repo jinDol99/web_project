@@ -1,6 +1,7 @@
 package com.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.common.SearchDTO;
 import com.yedam.vo.ReplyVO;
@@ -15,4 +16,15 @@ public interface ReplyService {
 	
 	int getReplyCount(int bno);	// [9-14] 댓글 건수
 	List<ReplyVO> replyList(SearchDTO search);
+	
+	//---------------------------------------
+	// (임시) [12-4] FullCalendar 관련 서비스
+	
+	List<Map<String, Object>> eventList();
+	boolean addEvent(SearchDTO event);
+	boolean removeEvent(SearchDTO event);
+	
+	
+	// FullCalendar 관련 서비스 끝
+	//---------------------------------------
 }

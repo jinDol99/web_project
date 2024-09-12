@@ -36,6 +36,7 @@ public class AddReplysControl implements Control {
 		String replyInput = request.getParameter("reply");
 		
 		DebugUtil.printcurrVal("replyInput", replyInput);
+		
 		ReplyVO reply = new ReplyVO();
 		reply.setReplyer(replyerInput);
 		reply.setBoardNum(boardNumInput);
@@ -57,12 +58,10 @@ public class AddReplysControl implements Control {
 			// [6-8-a]
 			map.put("retCode", "OK");
 			map.put("retVal", reply);
-			System.out.println("oooooooooooooooooooooooo");
 			
 		} else {
 //			response.getWriter().print("{\"retCode\": \"NG\"}");
 			map.put("retCode", "NG");
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		}
 		
 		// [6-8-b]

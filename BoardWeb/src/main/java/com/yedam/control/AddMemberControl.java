@@ -1,22 +1,31 @@
 package com.yedam.control;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.service.MemberService;
+import com.yedam.service.MemberServiceImpl;
 import com.yedam.vo.MemberVO;
 
 public class AddMemberControl implements Control {
 	@Override
-	public void exec(HttpServletRequest request, HttpServletResponse response) {
+	public void exec(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		MemberVO mvo = new MemberVO();
-		mvo.setMemberId(id);
-		mvo.setMemberName(name);
-		mvo.setPassword(pw);
-		mvo.setEmail(mail);
+		
+		
+//		String id;
+//		mvo.setMemberId(id);
+//		String name;
+//		mvo.setMemberName(name);
+//		String pw;
+//		mvo.setPassword(pw);
+//		String mail;
+//		mvo.setEmail(mail);
 		
 		MemberService svc = new MemberServiceImpl();
 		// 회원등록이 정상적일 경우 -> 회원 목록에 페이지 출력.

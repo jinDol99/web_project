@@ -1,6 +1,7 @@
 package com.yedam.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.common.SearchDTO;
 import com.yedam.vo.ReplyVO;
@@ -16,4 +17,14 @@ public interface ReplyMapper {
 	int selectKey();
 	
 	int selectReplyCount(int bno);	// [9-13] 댓글 건수
+	
+	
+	// -------------------------------------------
+	// (임시) [12-2] FullCalendar 일정 관련 매퍼
+	List<Map<String, Object>> selectEvent();
+	int insertEvent(SearchDTO event);
+	int deleteEvent(SearchDTO event);
+	
+	// FullCalendar 일정 관련 매퍼 끝
+	// -------------------------------------------
 }

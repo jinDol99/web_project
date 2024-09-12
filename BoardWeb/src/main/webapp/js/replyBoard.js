@@ -109,8 +109,6 @@ function addReplyFunc(e) {
 				console.log(err);
 				
 				showReplyListAndPagingList();
-
-				// TODO reply DB에 저장 자체는 잘 되는데, 계속 err 메시지가 뜸. 해결 필요!
 			}
 		)
 	} // end of if-else		

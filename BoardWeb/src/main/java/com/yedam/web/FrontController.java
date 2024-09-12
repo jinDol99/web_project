@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.common.DebugUtil;
+import com.yedam.control.EventControl;
 import com.yedam.control.IntroControl;
 import com.yedam.control.JavascriptControl;
 import com.yedam.control.MainControl;
@@ -41,6 +42,15 @@ public class FrontController extends HttpServlet {
 		map.put("/intro.do", new IntroControl());
 		map.put("/javascript.do", new JavascriptControl());
 		
+		//--------------------------------------------
+		// [12-6] FullCalendar 관련 URI - 컨트롤 매핑
+		map.put("/eventList.do", new EventControl());
+		map.put("/addEvent.do", new EventControl());
+		map.put("/removeEvent.do", new EventControl());
+		
+		// FullCalendar 관련 URI - 컨트롤 매핑 끝
+		//--------------------------------------------
+		
 		
 		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
 		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
@@ -52,17 +62,6 @@ public class FrontController extends HttpServlet {
 		map.putAll(memberMenu);		// 멤버 관련 메뉴 추가
 		map.putAll(boardMenu);		// 게시글 관련 메뉴 추가	
 		map.putAll(replyMenu);		// 댓글 관련 메뉴 추가	
-		
-		
-		
-//		// 기능 등록.
-//		map.put("/addForm.do", new AddFormControl());			// 회원 등록 페이지
-//		map.put("/addMember.do", new AddMemberControl());		// 회원 조회 페이지
-//		map.put("/memberList.do", new MemberListControl());
-//		map.put("/getMember.do", new GetMemberControl());		// 회원 아이디로 상세조회	
-//		map.put("/modifyForm.do", new ModFormControl());		// 수정화면 호출
-//		map.put("/modifyMember.do", new ModifyMemberControl());	// 수정처리
-//		map.put("/removeMember.do", new RemoveMemberControl());	// 삭제처리
 	}
 	
 	@Override

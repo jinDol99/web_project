@@ -64,5 +64,28 @@
 		VALUES (reply_seq.NEXTVAL, #{replyer}, #{reply}, #{boardNum})
 	</insert>
 	
+	
+	<!-- #################################### -->
+	<!-- (임시) [12-3] FullCalendar 일정 관련 -->
+	<select id="selectEvent" useCache="false" resultType="map">
+		SELECT 	title
+				,start_date AS "start"
+				,end_date	AS "end"
+		FROM	tbl_calendar
+	</select>
+	
+	<insert id="insertEvent" parameterType="com.yedam.common.SearchDTO">
+		INSERT INTO tbl_calendar
+		VALUES(#{title}, #{start}, #{end})
+	</insert>
+	
+	<delete id="deleteEvent" parameterType="com.yedam.common.SearchDTO">
+		DELETE FROM tbl_calendar
+		WHERE title = #{title}
+		  AND start_date = #{start}
+		  AND end_date = #{end}
+	</delete>
+	<!-- FullCalendar 일정 관련 SQL 매핑 끝   -->
+	<!-- #################################### -->
 
 </mapper>

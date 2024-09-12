@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
+import com.yedam.common.DebugUtil;
 import com.yedam.common.SearchDTO;
 import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
@@ -35,6 +36,8 @@ public class ReplyMenuControl implements Control {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(map);
+		
+		DebugUtil.printcurrVal("json", json);
 		
 		response.getWriter().print(json);
 
