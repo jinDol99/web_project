@@ -30,13 +30,12 @@ public class FrontController extends HttpServlet {
 	Map<String, Control> map;
 	
 	public FrontController() {
-		System.out.println("FrontController 생성자");
 		map = new HashMap<>();
 	}
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("init 메소드");
+		System.out.println("[FrontController.java] init 메소드 호출 완료");
 		map.put("/main.do", new MainControl());
 		map.put("/sub.do", new SubControl());
 		map.put("/intro.do", new IntroControl());
