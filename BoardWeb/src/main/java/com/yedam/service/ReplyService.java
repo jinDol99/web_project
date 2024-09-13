@@ -24,7 +24,10 @@ public interface ReplyService {
 	boolean addEvent(SearchDTO event);
 	boolean removeEvent(SearchDTO event);
 	
-	
-	// FullCalendar 관련 서비스 끝
+	// Chart 관련 서비스 끝
 	//---------------------------------------
+	List<Map<String, Object>> countPerWriter();
+	
+	//---------------------------------------
+	// (임시) [13-8] chart 관련 서비스
 }

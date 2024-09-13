@@ -51,6 +51,15 @@ public class FrontController extends HttpServlet {
 		//--------------------------------------------
 		
 		
+		//--------------------------------------------
+		// [12-6] Google Chart 관련 URI - 컨트롤 매핑
+		map.put("/chart.do", new EventControl());
+		map.put("/showChart.do", new EventControl());
+		
+		// Google Chart 관련 URI - 컨트롤 매핑 끝
+		//--------------------------------------------
+		
+		
 		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
 		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
 	

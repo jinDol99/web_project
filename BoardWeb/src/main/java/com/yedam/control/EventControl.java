@@ -20,9 +20,10 @@ import com.yedam.service.ReplyServiceImpl;
 
 /*
  * ===== [12-7] 이번엔 관련된 컨트롤을 전부 통합하여 관리할 것임. 여기선 FullCalendar의 조회, 추가, 삭제를 한꺼번에 관리.
- *	"/eventList.do" 	-> 
- * 	"/addEvent.do" 		->
- * 	"/removeEvent.do"	->
+ *	"/eventList.do" 	-> eventList 메소드
+ * 	"/addEvent.do" 		-> addEvent 메소드
+ * 	"/removeEvent.do"	-> remvoveEvent 메소드
+ * 	"/chart.do"
  */
 
 public class EventControl implements Control {
@@ -122,5 +123,40 @@ public class EventControl implements Control {
 		}
 		
 	}
-
+	
+	
+	//--------------------------------------------
+	// [12-7] Chart의 JSON 데이터 가져오는 컨트롤러
+	public void chart(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/json;charset=utf-8");
+		
+		List<Map<String, Object>> list = svc.countPerWriter();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(list);
+		
+		try {
+			response.getWriter().print(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	// Chart의 JSON 데이터 가져오는 컨트롤러 끝
+	//--------------------------------------------
+	
+	
+	
+	
+	//--------------------------------------------
+	// [12-7] Google Chart의 페이지 호출하는 컨트롤러
+	public void showChart(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("admin/chart.tiles").forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	// Chart의 페이지 호출하는 컨트롤러 끝
+	//--------------------------------------------
+	
 }

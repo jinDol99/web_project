@@ -71,9 +71,20 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.deleteEvent(event) == 1;
 	}
 	
-	
-	
 	// FullCalendar 관련 서비스 impl 끝
 	//---------------------------------------
 	
+	
+	
+	
+	
+	//---------------------------------------
+	// (임시) [12-5] chart 관련 서비스 impl
+	@Override
+	public List<Map<String, Object>> countPerWriter() {
+		return mapper.countPerWriter();
+	}
+	
+	// chart 관련 서비스 impl 끝
+	//---------------------------------------
 }

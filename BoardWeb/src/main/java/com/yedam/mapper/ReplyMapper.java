@@ -27,4 +27,17 @@ public interface ReplyMapper {
 	
 	// FullCalendar 일정 관련 매퍼 끝
 	// -------------------------------------------
+	
+	
+	
+	// -------------------------------------------
+	// (임시) [13-2] Google 차트 관련 매퍼
+	List<Map<String, Object>> todoList();			// 오늘의 할 일 조회
+	List<Map<String, Object>> countPerWriter();		// 글 작성 건수와 작성자 조회
+	
+	
+	// -------------------------------------------
+		
+	
+	
 }

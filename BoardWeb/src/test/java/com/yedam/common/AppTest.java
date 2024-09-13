@@ -104,7 +104,7 @@ public class AppTest {
 		
 		SqlSession session =  DataSource.getInstance().openSession(true);
 		ReplyMapper mapper = session.getMapper(ReplyMapper.class);
-		List<Map<String, Object>> list = mapper.selectEvent();
+		List<Map<String, Object>> list = mapper.countPerWriter();
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(list);
