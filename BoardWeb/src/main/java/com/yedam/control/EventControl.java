@@ -65,13 +65,14 @@ public class EventControl implements Control {
 		
 		try {
 			response.getWriter().print(json);
+			DebugUtil.printcurrVal("json", json);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
-	//== "/BoardWeb/eventList.do"가 호출되면 실행하는 컨트롤 메소드. ==//
+	//== "/BoardWeb/addEvent.do"가 호출되면 실행하는 컨트롤 메소드. ==//
 	public void addEvent(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("[EventControl.java] addEvent 메소드 실행");
 		
@@ -123,6 +124,14 @@ public class EventControl implements Control {
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//--------------------------------------------

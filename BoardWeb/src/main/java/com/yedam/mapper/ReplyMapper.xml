@@ -68,7 +68,7 @@
 	<!-- #################################### -->
 	<!-- (임시) [12-3] FullCalendar 일정 관련 -->
 	<select id="selectEvent" useCache="false" resultType="map">
-		SELECT 	title
+		SELECT 	title AS "title"
 				,start_date AS "start"
 				,end_date	AS "end"
 		FROM	tbl_calendar
