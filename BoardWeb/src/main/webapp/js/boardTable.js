@@ -9,6 +9,11 @@ new DataTable('#example', {
             render: (data, type, row) => "<button onClick='deleteRow(" + row.replyNo + ")'>삭제</button>",
             targets: 4	// n번 인덱스의 열에 위의 렌더린된 내용을 추가함
         },
+        {
+			render: (data, type, row) => "<button onClick='deleteRow(" + row.replyNo + ")'>삭제</button>",
+            targets: 5	// n번 인덱스의 열에 위의 렌더린된 내용을 추가함
+			
+		}
     ],	
 	
 	columns: [
@@ -140,31 +145,35 @@ function addNewRow() {		// 테이블에 값을 추가. 실제 DB에는 적용 X
 function addNewRow() {
 	let reply = document.querySelector("#reply").value;
 	
-	fetch("addReply.do", {
-		method: 'post',
-		headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-		body: 'bno=' + bno + '&reply=' + reply + '&replyer=' + writer
+	if(writer == null || writer == '') {
+		alert("로그인 후 댓글을 입력해주세요.");
+	} else {
+		fetch("addReply.do", {
+			method: 'post',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			body: 'bno=' + bno + '&reply=' + reply + '&replyer=' + writer
+			})
+		.then(resolve => resolve.json())
+		.then( function(result) {
+			console.log("▼▼ [boardTable.js] addReply.do - result ▼▼");
+			console.log(result)
+			
+			table.row
+			.add({
+				replyNo: result.retVal.boardNum,
+				reply: result.retVal.reply,
+				replyer: result.retVal.replyer,
+				replyDate: new Date()
+			})
+			.draw(false);
+			
 		})
-	.then(resolve => resolve.json())
-	.then( function(result) {
-		console.log("▼▼ [boardTable.js] addReply.do - result ▼▼");
-		console.log(result)
-		
-		table.row
-		.add({
-			replyNo: result.retVal.boardNum,
-			reply: result.retVal.reply,
-			replyer: result.retVal.replyer,
-			replyDate: new Date()
+		.catch( function(err) {
+			Swal.fire("댓글 등록 실패!");
+			console.log("▼▼ [boardTable.js] addReply.do - err ▼▼");
+			console.log(err);
 		})
-		.draw(false);
-		
-	})
-	.catch( function(err) {
-		Swal.fire("댓글 등록 실패!");
-		console.log("▼▼ [boardTable.js] addReply.do - err ▼▼");
-		console.log(err);
-	})
+	}
 }
 
 
